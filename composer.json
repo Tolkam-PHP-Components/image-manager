@@ -1,0 +1,25 @@
+{
+    "name": "tolkam/image-manager",
+    "description": "Image manager with image variations support",
+    "type": "library",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Tolkam\\ImageManager\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*",
+        "ext-imagick": "*",
+        "intervention/image": "^2.5",
+        "tolkam/storage": "^1.0@dev"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
