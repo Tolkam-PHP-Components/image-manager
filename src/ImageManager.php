@@ -128,6 +128,13 @@ class ImageManager implements ImageManagerInterface
     public function getMeta(string $sourceFilename): ImageMeta
     {
         $meta = new ImageMeta;
+        
+        // mo meta for unsupported formats
+        $sourceExt = pathinfo($sourceFilename, PATHINFO_EXTENSION);
+        if (!in_array($sourceExt, $this->supportedFormats)) {
+            return $meta;
+        }
+        
         $image = $this->createImage($sourceFilename);
         
         $meta->setWidth($image->getWidth());
