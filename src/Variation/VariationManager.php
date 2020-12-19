@@ -8,8 +8,11 @@ class VariationManager
     
     /**
      * Extensions to not replace with variation extension
+     * @var string[]
      */
-    const PASS_THROUGH_EXT = ['gif'];
+    protected array $passThroughFormats = [
+        'gif',
+    ];
     
     /**
      * @var VariationInterface[]
@@ -32,6 +35,30 @@ class VariationManager
     public function __construct(string $pattern = self::PATTERN_DEFAULT)
     {
         $this->pattern = $pattern;
+    }
+    
+    /**
+     * Gets the pass-through formats
+     *
+     * @return string[]
+     */
+    public function getPassThroughFormats(): array
+    {
+        return $this->passThroughFormats;
+    }
+    
+    /**
+     * Sets the pass-through formats
+     *
+     * @param string[] $formats
+     *
+     * @return self
+     */
+    public function setPassThroughFormats(array $formats): self
+    {
+        $this->passThroughFormats = $formats;
+        
+        return $this;
     }
     
     /**
@@ -139,7 +166,7 @@ class VariationManager
         $newName = $this->applyPattern([
             '%id%' => $variation->getId(),
             '%filename%' => $filename,
-            '%ext%' => in_array($sourceExt, self::PASS_THROUGH_EXT)
+            '%ext%' => in_array($sourceExt, $this->passThroughFormats)
                 ? $sourceExt
                 : $variation->getExtension(),
         ]);
