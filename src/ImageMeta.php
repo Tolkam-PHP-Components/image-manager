@@ -9,24 +9,24 @@ class ImageMeta
      *
      * @var string
      */
-    protected string $lqp = '';
+    protected ?string $lqp = null;
     
     /**
      * Average color
      *
      * @var array
      */
-    protected array $avgColor = [0, 0, 0];
+    protected ?array $avgColor = null;
     
     /**
      * @var int
      */
-    protected int $width = 0;
+    protected ?int $width = null;
     
     /**
      * @var int
      */
-    protected int $height = 0;
+    protected ?int $height = null;
     
     /**
      * Sets the low-quality preview
@@ -87,6 +87,46 @@ class ImageMeta
     }
     
     /**
+     * Gets the low-quality preview
+     *
+     * @return string|null
+     */
+    public function getLqp(): ?string
+    {
+        return $this->lqp;
+    }
+    
+    /**
+     * Gets the average color
+     *
+     * @return array|null
+     */
+    public function getAvgColor(): ?array
+    {
+        return $this->avgColor;
+    }
+    
+    /**
+     * Gets the width
+     *
+     * @return int|null
+     */
+    public function getWidth(): ?int
+    {
+        return $this->width;
+    }
+    
+    /**
+     * Gets the height
+     *
+     * @return int|null
+     */
+    public function getHeight(): ?int
+    {
+        return $this->height;
+    }
+    
+    /**
      * @return array
      */
     public function toArray(): array
@@ -101,7 +141,7 @@ class ImageMeta
             //     'b' => $color[2],
             //     'hex' => sprintf('%02x%02x%02x', ...$color),
             // ],
-            'avgColor' => sprintf('%02x%02x%02x', ...$color),
+            'avgColor' => $color ? sprintf('%02x%02x%02x', ...$color) : null,
             'width' => $this->width,
             'height' => $this->height,
         ];
