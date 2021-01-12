@@ -15,6 +15,7 @@
         "ext-mbstring": "*",
         "ext-imagick": "*",
         "intervention/image": "^2.5",
+        "tolkam/uri-generator": "^1.0@dev",
         "tolkam/storage": "^1.0@dev"
     },
     "extra": {
