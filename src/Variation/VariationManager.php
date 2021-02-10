@@ -12,6 +12,7 @@ class VariationManager
      */
     protected array $passThroughFormats = [
         'gif',
+        'svg',
     ];
     
     /**

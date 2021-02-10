@@ -49,6 +49,7 @@ class ImageManager implements ImageManagerInterface
      */
     protected array $passThroughFormats = [
         'gif',
+        'svg',
     ];
     
     /**
