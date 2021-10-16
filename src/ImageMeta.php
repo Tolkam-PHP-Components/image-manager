@@ -7,24 +7,24 @@ class ImageMeta
     /**
      * Low-quality preview
      *
-     * @var string
+     * @var string|null
      */
     protected ?string $lqp = null;
     
     /**
      * Average color
      *
-     * @var array
+     * @var array|null
      */
     protected ?array $avgColor = null;
     
     /**
-     * @var int
+     * @var int|null
      */
     protected ?int $width = null;
     
     /**
-     * @var int
+     * @var int|null
      */
     protected ?int $height = null;
     
@@ -135,12 +135,6 @@ class ImageMeta
         
         return [
             'lqp' => $this->lqp,
-            // 'avgColor' => [
-            //     'r' => $color[0],
-            //     'g' => $color[1],
-            //     'b' => $color[2],
-            //     'hex' => sprintf('%02x%02x%02x', ...$color),
-            // ],
             'avgColor' => $color ? sprintf('%02x%02x%02x', ...$color) : null,
             'width' => $this->width,
             'height' => $this->height,

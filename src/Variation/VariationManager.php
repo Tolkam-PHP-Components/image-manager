@@ -148,7 +148,7 @@ class VariationManager
      * @return string
      * @throws VariationManagerException
      */
-    public function getVFL(string $sourceFileName, $variation)
+    public function getVFL(string $sourceFileName, $variation): string
     {
         $isString = is_string($variation);
         if (!$isString && !$variation instanceof VariationInterface) {
@@ -185,7 +185,7 @@ class VariationManager
      *
      * @return string|null
      */
-    public function aliasFromVFL(string $variationFilename)
+    public function aliasFromVFL(string $variationFilename): ?string
     {
         if (!$parsed = $this->parse($variationFilename)) {
             return null;
@@ -201,7 +201,7 @@ class VariationManager
      *
      * @return string|null
      */
-    public function filenameFromVFL(string $variationFilename)
+    public function filenameFromVFL(string $variationFilename): ?string
     {
         if (!$parsed = $this->parse($variationFilename)) {
             return null;
@@ -215,7 +215,7 @@ class VariationManager
      *
      * @return string|null
      */
-    private function getAliasById(string $id)
+    private function getAliasById(string $id): ?string
     {
         if (isset($this->idAliasCache[$id])) {
             return $this->idAliasCache[$id];

@@ -136,7 +136,7 @@ class ImageManager implements ImageManagerInterface
             return $meta;
         }
         
-        $image = $this->createImage($sourceFilename);
+        $image = $this->createImage($sourceFilename, true);
         
         $meta->setWidth($image->getWidth());
         $meta->setHeight($image->getHeight());
@@ -165,7 +165,7 @@ class ImageManager implements ImageManagerInterface
         }
         
         // process variation
-        $image = $this->createImage($sourceFilename);
+        $image = $this->createImage($sourceFilename, true);
         
         $width = $variation->getWidth();
         $height = $variation->getHeight();
@@ -195,7 +195,7 @@ class ImageManager implements ImageManagerInterface
     public function deleteVariations(string $sourceFilename): bool
     {
         $filenames = [];
-        foreach ($this->variationManager->getAll() as $alias => $variation) {
+        foreach ($this->variationManager->getAll() as $variation) {
             $filenames[] = $this->variationManager->getVFL($sourceFilename, $variation);
         }
         
@@ -251,7 +251,7 @@ class ImageManager implements ImageManagerInterface
      *
      * @return Image
      */
-    private function createImage(string $source, bool $strip = true)
+    private function createImage(string $source, bool $strip): Image
     {
         $image = $this->intervention->make(
             $this->storage->getRealPath($source)
@@ -277,8 +277,11 @@ class ImageManager implements ImageManagerInterface
      *
      * @return Image
      */
-    private function writeImage(Image $image, VariationInterface $variation, string $targetFilename)
-    {
+    private function writeImage(
+        Image $image,
+        VariationInterface $variation,
+        string $targetFilename
+    ): Image {
         $psrStream = $image->stream(
             $variation->getExtension(),
             $variation->getQuality()
@@ -295,7 +298,7 @@ class ImageManager implements ImageManagerInterface
      *
      * @return bool
      */
-    private function makeCopy(string $sourceFilename, string $targetFilename)
+    private function makeCopy(string $sourceFilename, string $targetFilename): bool
     {
         return $this->storage->copy($sourceFilename, $targetFilename);
     }
@@ -307,7 +310,7 @@ class ImageManager implements ImageManagerInterface
      *
      * @return bool
      */
-    private function isImagick(Image $image)
+    private function isImagick(Image $image): bool
     {
         return class_exists('Imagick') && $image->getCore() instanceof Imagick;
     }
@@ -317,7 +320,7 @@ class ImageManager implements ImageManagerInterface
      *
      * @return Closure
      */
-    private function resizeConstraint()
+    private function resizeConstraint(): Closure
     {
         // TODO: configurable
         return function (Constraint $constraint) {
@@ -332,7 +335,7 @@ class ImageManager implements ImageManagerInterface
      * @return VariationInterface
      * @throws ImageManagerException
      */
-    private function getVariation(string $variationAlias)
+    private function getVariation(string $variationAlias): VariationInterface
     {
         $variation = $this->variationManager->get($variationAlias);
         $format = $variation->getExtension();
