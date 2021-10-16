@@ -3,8 +3,13 @@
     "description": "Image manager with image variations support",
     "type": "library",
     "license": "proprietary",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Kanstantsin Kulesh",
+            "email": "kk@tolkam.com",
+            "homepage": "https://www.tolkam.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Tolkam\\ImageManager\\": "src"
@@ -14,13 +19,8 @@
         "php": ">=7.4",
         "ext-mbstring": "*",
         "ext-imagick": "*",
-        "intervention/image": "^2.5",
-        "tolkam/uri-generator": "^1.0@dev",
-        "tolkam/storage": "^1.0@dev"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
+        "intervention/image": "^2.0",
+        "tolkam/uri-generator": "^1.0",
+        "tolkam/storage": "^1.0"
     }
 }
